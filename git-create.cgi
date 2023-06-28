@@ -117,6 +117,7 @@ if ( $ENV{HTTPS} eq 'on' ){
 }
 
 my $gitpath = $settings{gitalias};
+my $gitport = $ENV{SERVER_PORT};
 
 if ($ENV{REQUEST_METHOD} eq 'GET'){
   print_page_headers();
@@ -224,7 +225,7 @@ sub print_git_repos {
         $desc = <fh>;
       }
       print $cgi->Tr(
-          $cgi->td([$dir, "${proto}$ENV{SERVER_NAME}/${gitpath}/${dir}", "${desc}"])
+          $cgi->td([$dir, "${proto}$ENV{SERVER_NAME}:${gitport}/${gitpath}/${dir}", "${desc}"])
       );
     }
   }
